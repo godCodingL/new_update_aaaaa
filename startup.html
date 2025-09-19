@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NextMillan - Startup Program</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --dark-bg: #212121;
+        --dark-card: #2d2d2d;
+        --dark-text: #ffffff;
+        --dark-border: #404040;
+        --gold-primary: #b89b53;
+        --gold-secondary: #d4b977;
+        --gold-accent: #e5d2a9;
+        --gold-dark: #9c8446;
+        --white: #ffffff;
+        --light-gray: #b0b0b0;
+      }
+
+      body {
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        min-height: 100vh;
+        scroll-behavior: smooth;
+      }
+
+      /* Header Styles */
+      .header {
+        background-color: rgba(33, 33, 33, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 5%;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid var(--dark-border);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--gold-primary);
+        text-decoration: none;
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: var(--dark-text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--gold-primary);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--gold-primary);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 160px 5% 100px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background-color: var(--dark-bg);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(184, 155, 83, 0.05) 0%,
+            transparent 20%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(212, 185, 119, 0.05) 0%,
+            transparent 20%
+          );
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-text {
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero-text h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+
+      .hero-text p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: var(--light-gray);
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .btn {
+        padding: 1rem 2.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background-color: var(--gold-primary);
+        color: var(--dark-bg);
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        clip-path: polygon(0 0, 100% 0, 100% 20%, 0 50%);
+        transition: all 0.4s ease;
+        z-index: -1;
+      }
+
+      .btn-primary:hover::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--gold-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(184, 155, 83, 0.3);
+      }
+
+      .btn-secondary {
+        border: 1px solid var(--gold-primary);
+        background: transparent;
+        color: var(--gold-primary);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(184, 155, 83, 0.1);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(184, 155, 83, 0.2);
+      }
+
+      .hero-image {
+        position: relative;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        background-color: var(--dark-card);
+        border: 1px solid var(--dark-border);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Benefits Section */
+      .benefits {
+        padding: 100px 5%;
+        background-color: var(--dark-card);
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        position: relative;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 3px;
+        background-color: var(--gold-primary);
+        margin: 1rem auto;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .benefit-card {
+        padding: 2.5rem;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        background-color: var(--dark-bg);
+        border-radius: 15px;
+        border: 1px solid var(--dark-border);
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .benefit-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .benefit-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--gold-primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+      }
+
+      .benefit-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .benefit-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: var(--gold-primary);
+      }
+
+      .benefit-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark-text);
+        font-weight: 700;
+      }
+
+      .benefit-description {
+        color: var(--light-gray);
+        line-height: 1.7;
+      }
+
+      /* Registration Section */
+      .registration {
+        padding: 100px 5%;
+        background-color: var(--dark-bg);
+      }
+
+      .registration-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .registration-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+
+      .registration-content p {
+        font-size: 1.2rem;
+        color: var(--light-gray);
+        margin-bottom: 2rem;
+      }
+
+      .registration-form {
+        background-color: var(--dark-card);
+        padding: 2.5rem;
+        border-radius: 15px;
+        border: 1px solid var(--dark-border);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--dark-text);
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid var(--dark-border);
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--gold-primary);
+        box-shadow: 0 0 0 2px rgba(184, 155, 83, 0.2);
+      }
+
+      .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      /* Testimonials Section */
+      .testimonials {
+        padding: 100px 5%;
+        background-color: var(--dark-card);
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .testimonial-card {
+        padding: 2rem;
+        background-color: var(--dark-bg);
+        border-radius: 15px;
+        border: 1px solid var(--dark-border);
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .testimonial-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        color: var(--light-gray);
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .testimonial-text::before {
+        content: '"';
+        font-size: 3rem;
+        color: var(--gold-primary);
+        opacity: 0.3;
+        position: absolute;
+        top: -20px;
+        left: -10px;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--gold-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        font-size: 1.5rem;
+        color: var(--dark-bg);
+      }
+
+      .author-info h4 {
+        color: var(--dark-text);
+        margin-bottom: 0.2rem;
+      }
+
+      .author-info p {
+        color: var(--gold-primary);
+        font-size: 0.9rem;
+      }
+
+      /* FAQ Section */
+      .faq {
+        padding: 100px 5%;
+        background-color: var(--dark-bg);
+      }
+
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--dark-border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        padding: 1.5rem;
+        background-color: var(--dark-card);
+        color: var(--dark-text);
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background-color: rgba(184, 155, 83, 0.1);
+      }
+
+      .faq-question i {
+        transition: transform 0.3s ease;
+      }
+
+      .faq-answer {
+        padding: 0 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        background-color: var(--dark-bg);
+        color: var(--light-gray);
+      }
+
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 500px;
+        padding: 1.5rem;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #1a1a1a;
+        color: var(--dark-text);
+        padding: 60px 5% 40px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-text);
+        position: relative;
+        padding-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--gold-primary);
+      }
+
+      .footer-column p {
+        color: var(--light-gray);
+        margin-bottom: 1rem;
+        line-height: 1.7;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-links a {
+        color: var(--light-gray);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        padding-left: 0;
+      }
+
+      .footer-links a::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: var(--gold-primary);
+        transition: width 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--gold-primary);
+        padding-left: 5px;
+      }
+
+      .footer-links a:hover::before {
+        width: 100%;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-links a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold-primary);
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-links a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(184, 155, 83, 0.2) 0%,
+          rgba(184, 155, 83, 0) 100%
+        );
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        z-index: -1;
+      }
+
+      .social-links a:hover::before {
+        transform: translateY(0);
+      }
+
+      .social-links a:hover {
+        background-color: var(--gold-primary);
+        color: #1a1a1a;
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        text-align: center;
+        color: var(--light-gray);
+        font-size: 0.9rem;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+
+        .hero-text h1 {
+          font-size: 2.8rem;
+        }
+
+        .registration-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          padding: 120px 5% 60px;
+        }
+
+        .hero-text h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-text p {
+          font-size: 1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero-image {
+          height: 300px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-text h1 {
+          font-size: 1.8rem;
+        }
+
+        .benefit-card,
+        .testimonial-card {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
+        <a href="#" class="logo">NextMillan</a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Startups</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Accelerate Your Startup Journey</h1>
+          <p>
+            Join NextMillan's exclusive startup program and get access to
+            mentorship, resources, and funding opportunities to scale your
+            business to new heights.
+          </p>
+          <div class="hero-buttons">
+            <a href="#registration" class="btn btn-primary">Apply Now</a>
+            <a href="#benefits" class="btn btn-secondary">Learn More</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <i class="fas fa-rocket" style="font-size: 8rem; color: #b89b53"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+      <h2 class="section-title">Why Join Our Startup Program?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="benefit-title">Expert Mentorship</h3>
+          <p class="benefit-description">
+            Get guidance from industry veterans and successful entrepreneurs who
+            have built and scaled businesses from the ground up.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-funding"></i>
+          </div>
+          <h3 class="benefit-title">Funding Opportunities</h3>
+          <p class="benefit-description">
+            Connect with our network of investors and venture capitalists
+            actively looking for promising startups to fund.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <h3 class="benefit-title">Networking Events</h3>
+          <p class="benefit-description">
+            Attend exclusive events and meet potential partners, clients, and
+            mentors in the startup ecosystem.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 class="benefit-title">Resources & Tools</h3>
+          <p class="benefit-description">
+            Access premium software, cloud credits, and other resources to help
+            you build and scale your product.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="benefit-title">Talent Acquisition</h3>
+          <p class="benefit-description">
+            Find the right talent for your startup through our recruitment
+            assistance and talent network.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="benefit-title">Global Exposure</h3>
+          <p class="benefit-description">
+            Gain visibility through our marketing support, PR opportunities, and
+            international network.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="registration" id="registration">
+      <div class="registration-container">
+        <div class="registration-content">
+          <h2>Ready to Accelerate Your Startup?</h2>
+          <p>
+            Join hundreds of successful startups that have transformed their
+            ideas into market-leading products with NextMillan's comprehensive
+            support ecosystem.
+          </p>
+          <p>
+            Our application process is simple but selective. We're looking for
+            innovative startups with strong potential for growth and impact.
+          </p>
+        </div>
+        <div class="registration-form">
+          <h3 style="margin-bottom: 1.5rem; color: var(--dark-text)">
+            Apply Now
+          </h3>
+          <form id="startupForm">
+            <div class="form-group">
+              <label for="startupName">Startup Name</label>
+              <input type="text" id="startupName" name="startupName" required />
+            </div>
+            <div class="form-group">
+              <label for="founderName">Founder's Name</label>
+              <input type="text" id="founderName" name="founderName" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+            <div class="form-group">
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry" required>
+                <option value="">Select Industry</option>
+                <option value="tech">Technology</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="finance">Fintech</option>
+                <option value="education">Edtech</option>
+                <option value="ecommerce">E-commerce</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="stage">Current Stage</label>
+              <select id="stage" name="stage" required>
+                <option value="">Select Stage</option>
+                <option value="idea">Idea Stage</option>
+                <option value="prototype">Prototype</option>
+                <option value="mvp">MVP</option>
+                <option value="revenue">Generating Revenue</option>
+                <option value="scaling">Scaling</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="description">Startup Description</label>
+              <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="challenges">Biggest Challenges</label>
+              <textarea id="challenges" name="challenges"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%">
+              Submit Application
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <h2 class="section-title">Success Stories</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            NextMillan's startup program was a game-changer for us. The
+            mentorship and resources helped us pivot at the right time and
+            secure funding that accelerated our growth exponentially.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <h4>Modi SHekhawat</h4>
+              <p>CEO, TechInnovate</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            The network we built through NextMillan opened doors we didn't even
+            know existed. From investors to potential enterprise clients, the
+            connections have been invaluable.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <h4>Mohit Khanna</h4>
+              <p>Founder, DataSecure</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            As a first-time founder, the guidance I received from NextMillan's
+            mentors helped me avoid costly mistakes and focus on what truly
+            matters for growth and sustainability.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <h4>Alex Rodriguez</h4>
+              <p>CEO, HealthHub</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            What criteria do you use to select startups?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            We look for innovative startups with a strong team, scalable
+            business model, and potential for market impact. While we consider
+            early-stage startups, we prefer those with at least a prototype or
+            MVP.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            How long does the application process take?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            The initial application review takes about 2-3 weeks. If selected
+            for the next round, you'll be invited for interviews and pitches,
+            which may take an additional 2-3 weeks.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            Is there any cost to join the program?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            There's no cost to apply or participate in our startup program. We
+            invest in promising startups in exchange for equity, typically
+            between 3-7% depending on the stage and amount of support required.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            What kind of mentorship can I expect?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            You'll be matched with mentors based on your industry and specific
+            needs. Our mentors include successful entrepreneurs, industry
+            experts, investors, and executives from leading tech companies.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            Do you provide funding? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Yes, we provide seed funding to selected startups. Additionally, we
+            help connect you with our network of investors for subsequent
+            funding rounds.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>NextMillan Startups</h3>
+          <p>
+            Empowering the next generation of innovators and entrepreneurs
+            through mentorship, resources, and funding.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Programs</h3>
+          <ul class="footer-links">
+            <li><a href="#">Incubation</a></li>
+            <li><a href="#">Acceleration</a></li>
+            <li><a href="#">Mentorship</a></li>
+            <li><a href="#">Funding</a></li>
+            <li><a href="#">Workshops</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Success Stories</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Partner Network</a></li>
+            <li><a href="#">Investor Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> Innovation District, Tech City
+          </p>
+          <p><i class="fas fa-envelope"></i> startups@nextmillan.com</p>
+          <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2023 NextMillan Startups. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      // Animate elements on scroll
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll(
+          ".benefit-card, .testimonial-card"
+        );
+
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+
+          if (elementPosition < screenPosition) {
+            element.classList.add("animate");
+          }
+        });
+      };
+
+      // FAQ accordion functionality
+      const faqItems = document.querySelectorAll(".faq-item");
+
+      faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+
+        question.addEventListener("click", () => {
+          item.classList.toggle("active");
+        });
+      });
+
+      // Form submission
+      const form = document.getElementById("startupForm");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Basic form validation
+        const startupName = document.getElementById("startupName").value;
+        const founderName = document.getElementById("founderName").value;
+        const email = document.getElementById("email").value;
+
+        if (!startupName || !founderName || !email) {
+          alert("Please fill in all required fields");
+          return;
+        }
+
+        // In a real application, you would send this data to a server
+        alert(
+          "Application submitted successfully! We will review your application and get back to you soon."
+        );
+        form.reset();
+      });
+
+      // Initialize animations
+      window.addEventListener("scroll", animateOnScroll);
+      window.addEventListener("load", animateOnScroll);
+    </script>
+  </body>
+</html>

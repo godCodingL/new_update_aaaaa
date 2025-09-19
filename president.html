@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr. Utkarsh - President | NextMillan</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --dark-bg: #121212;
+        --dark-card: #1e1e1e;
+        --dark-text: #ffffff;
+        --dark-border: #333333;
+        --gold-primary: #d4af37;
+        --gold-secondary: #b8860b;
+        --gold-accent: #ffd700;
+        --gold-dark: #996515;
+        --white: #ffffff;
+        --light-gray: #b0b0b0;
+        --accent-blue: #00b4d8;
+        --accent-purple: #9d4edd;
+        --accent-green: #2a9d8f;
+      }
+
+      body {
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        min-height: 100vh;
+        scroll-behavior: smooth;
+      }
+
+      /* Header */
+      .president-header {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 30, 30, 0.9) 0%,
+          rgba(18, 18, 18, 0.95) 100%
+        );
+        padding: 100px 5% 60px;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid var(--dark-border);
+      }
+
+      .president-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(42, 157, 143, 0.1) 0%,
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 180, 216, 0.1) 0%,
+            transparent 30%
+          );
+        z-index: 0;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--accent-green);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .back-link i {
+        margin-right: 0.5rem;
+      }
+
+      .back-link:hover {
+        transform: translateX(-5px);
+        color: var(--accent-blue);
+      }
+
+      .president-title {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+          45deg,
+          var(--accent-green),
+          var(--accent-blue)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+      }
+
+      .president-subtitle {
+        font-size: 1.5rem;
+        color: var(--light-gray);
+        margin-bottom: 2rem;
+        font-weight: 300;
+      }
+
+      /* Profile Section */
+      .profile-section {
+        padding: 80px 5%;
+        position: relative;
+      }
+
+      .profile-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .profile-image {
+        position: relative;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: linear-gradient(45deg, var(--dark-card), #2a2a2a);
+        border: 1px solid var(--dark-border);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .profile-image::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          transparent,
+          rgba(42, 157, 143, 0.3),
+          transparent 30%
+        );
+        animation: rotate 8s linear infinite;
+      }
+
+      .profile-image-inner {
+        position: relative;
+        z-index: 1;
+        width: 80%;
+        height: 80%;
+        border-radius: 15px;
+        background: linear-gradient(
+          45deg,
+          var(--accent-green),
+          var(--accent-blue)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .profile-image-inner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 50%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+      }
+
+      .profile-image-inner i {
+        font-size: 8rem;
+        color: rgba(255, 255, 255, 0.9);
+        z-index: 2;
+      }
+
+      .profile-info {
+        background: linear-gradient(145deg, var(--dark-card), #252525);
+        border-radius: 20px;
+        padding: 3rem;
+        border: 1px solid var(--dark-border);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      }
+
+      .info-header {
+        margin-bottom: 2rem;
+      }
+
+      .info-name {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--accent-green);
+      }
+
+      .info-title {
+        font-size: 1.3rem;
+        color: var(--accent-blue);
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+      }
+
+      .info-details {
+        margin-bottom: 2rem;
+      }
+
+      .detail-item {
+        display: flex;
+        margin-bottom: 1.2rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .detail-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .detail-label {
+        font-weight: 600;
+        min-width: 160px;
+        color: var(--light-gray);
+      }
+
+      .detail-value {
+        color: var(--white);
+        font-weight: 500;
+      }
+
+      .bio-text {
+        color: var(--light-gray);
+        line-height: 1.8;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Timeline Section */
+      .timeline-section {
+        padding: 80px 5%;
+        background: linear-gradient(to bottom, var(--dark-bg), #1a1a1a);
+        position: relative;
+      }
+
+      .timeline-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        margin-bottom: 3rem;
+        color: var(--accent-green);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--accent-green),
+          var(--accent-blue)
+        );
+        margin: 1rem auto;
+        border-radius: 3px;
+      }
+
+      .timeline-wrapper {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(
+          to bottom,
+          var(--accent-green),
+          var(--accent-blue)
+        );
+        left: 50%;
+        margin-left: -1.5px;
+        border-radius: 3px;
+      }
+
+      .timeline-item {
+        position: relative;
+        width: 50%;
+        padding: 20px 40px;
+        box-sizing: border-box;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+      }
+
+      .timeline-content {
+        padding: 25px;
+        background: linear-gradient(145deg, var(--dark-card), #252525);
+        border-radius: 15px;
+        border: 1px solid var(--dark-border);
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .timeline-content::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--accent-green);
+        border: 4px solid var(--dark-card);
+        border-radius: 50%;
+        top: 30px;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content::after {
+        right: -54px;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content::after {
+        left: -54px;
+      }
+
+      .timeline-year {
+        font-weight: 800;
+        color: var(--accent-green);
+        margin-bottom: 0.8rem;
+        font-size: 1.3rem;
+      }
+
+      .timeline-title {
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        color: var(--white);
+        font-size: 1.2rem;
+      }
+
+      .timeline-description {
+        color: var(--light-gray);
+        line-height: 1.6;
+      }
+
+      /* Quotes Section */
+      .quotes-section {
+        padding: 100px 5%;
+        background: linear-gradient(135deg, var(--dark-bg), #1a1a1a);
+        position: relative;
+      }
+
+      .quotes-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem;
+        background: linear-gradient(145deg, var(--dark-card), #252525);
+        border-radius: 25px;
+        border: 1px solid var(--dark-border);
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .quotes-container::before,
+      .quotes-container::after {
+        content: '"';
+        font-family: "Playfair Display", serif;
+        font-size: 6rem;
+        color: var(--accent-green);
+        opacity: 0.2;
+        position: absolute;
+      }
+
+      .quotes-container::before {
+        top: -20px;
+        left: 30px;
+      }
+
+      .quotes-container::after {
+        bottom: -60px;
+        right: 30px;
+      }
+
+      .quote-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        font-style: italic;
+        color: var(--white);
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        font-weight: 500;
+      }
+
+      .quote-author {
+        font-weight: 700;
+        color: var(--accent-green);
+        font-size: 1.3rem;
+      }
+
+      /* Achievements Section */
+      .achievements-section {
+        padding: 100px 5%;
+        background: linear-gradient(to bottom, #1a1a1a, var(--dark-bg));
+      }
+
+      .achievements-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .achievement-card {
+        background: linear-gradient(145deg, var(--dark-card), #252525);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid var(--dark-border);
+        text-align: center;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .achievement-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .achievement-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-green);
+      }
+
+      .achievement-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--white);
+        font-weight: 700;
+      }
+
+      .achievement-description {
+        color: var(--light-gray);
+        line-height: 1.7;
+      }
+
+      /* Footer */
+      .president-footer {
+        background: linear-gradient(135deg, #0a0a0a, #121212);
+        padding: 60px 5% 40px;
+        border-top: 1px solid var(--dark-border);
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .footer-logo {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--accent-green);
+        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      .footer-text {
+        color: var(--light-gray);
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, var(--dark-card), #252525);
+        color: var(--accent-green);
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        border: 1px solid var(--dark-border);
+      }
+
+      .social-link:hover {
+        background: linear-gradient(
+          45deg,
+          var(--accent-green),
+          var(--accent-blue)
+        );
+        color: var(--white);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .copyright {
+        color: var(--light-gray);
+        font-size: 0.9rem;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* Animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+      .delay-4 {
+        animation-delay: 0.4s;
+      }
+      .delay-5 {
+        animation-delay: 0.5s;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .profile-container {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        .profile-image {
+          height: 400px;
+          max-width: 500px;
+          margin: 0 auto;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item:nth-child(even) {
+          left: 0;
+        }
+
+        .timeline-wrapper::before {
+          left: 40px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after,
+        .timeline-item:nth-child(even) .timeline-content::after {
+          left: -32px;
+        }
+
+        .president-title {
+          font-size: 3rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .president-header {
+          padding: 80px 5% 40px;
+        }
+
+        .president-title {
+          font-size: 2.5rem;
+        }
+
+        .profile-info {
+          padding: 2rem;
+        }
+
+        .detail-item {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .detail-label {
+          min-width: auto;
+        }
+
+        .quotes-container {
+          padding: 2rem 1.5rem;
+        }
+
+        .quote-text {
+          font-size: 1.4rem;
+        }
+
+        .timeline-item {
+          padding-left: 55px;
+          padding-right: 15px;
+        }
+
+        .timeline-wrapper::before {
+          left: 30px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after,
+        .timeline-item:nth-child(even) .timeline-content::after {
+          left: -22px;
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .president-title {
+          font-size: 2rem;
+        }
+
+        .president-subtitle {
+          font-size: 1.2rem;
+        }
+
+        .profile-image {
+          height: 300px;
+        }
+
+        .profile-image-inner i {
+          font-size: 5rem;
+        }
+
+        .section-title {
+          font-size: 2.2rem;
+        }
+
+        .social-links {
+          gap: 1rem;
+        }
+
+        .social-link {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="president-header">
+      <div class="header-content">
+        <a href="./index.html" class="back-link">
+          <i class="fas fa-arrow-left"></i> Back to NextMillan
+        </a>
+        <h1 class="president-title">Mr. Utkarsh</h1>
+        <p class="president-subtitle">Strategic Leader & Operations Pioneer</p>
+      </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+      <div class="profile-container">
+        <div class="profile-image animate">
+          <div class="profile-image-inner">
+            <i class="fas fa-user-tie"></i>
+          </div>
+        </div>
+        <div class="profile-info">
+          <div class="info-header">
+            <h2 class="info-name">Utkarsh</h2>
+            <p class="info-title">President & Chief Operations Officer</p>
+          </div>
+          <div class="info-details">
+            <div class="detail-item animate delay-1">
+              <span class="detail-label">Education:</span>
+              <span class="detail-value"
+                >B.Tech in Computer Science, BITS Pilani</span
+              >
+            </div>
+            <div class="detail-item animate delay-2">
+              <span class="detail-label">Years of Experience:</span>
+              <span class="detail-value">8+ Years</span>
+            </div>
+            <div class="detail-item animate delay-3">
+              <span class="detail-label">Role:</span>
+              <span class="detail-value"
+                >President & Chief Operations Officer</span
+              >
+            </div>
+            <div class="detail-item animate delay-4">
+              <span class="detail-label">Leadership Style:</span>
+              <span class="detail-value">Strategic & Execution-Driven</span>
+            </div>
+          </div>
+          <p class="bio-text animate delay-5">
+            Utkarsh is a dynamic technology executive and operational strategist
+            who has been instrumental in scaling NextMillan's global operations.
+            With a strong foundation in computer science from BITS Pilani and
+            extensive experience in enterprise technology solutions, he has
+            successfully led major initiatives in product development,
+            international expansion, and operational excellence. His strategic
+            vision and ability to execute complex projects have been key drivers
+            in NextMillan's rapid growth and market leadership.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+      <div class="timeline-container">
+        <h2 class="section-title">Career Milestones</h2>
+        <div class="timeline-wrapper">
+          <div class="timeline-item">
+            <div class="timeline-content animate">
+              <div class="timeline-year">2019</div>
+              <div class="timeline-title">Graduation</div>
+              <div class="timeline-description">
+                Graduated with Bachelor's in Computer Science from BITS Pilani,
+                laying the foundation for his technology career.
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content animate delay-1">
+              <div class="timeline-year">2020</div>
+              <div class="timeline-title">Joined NextMillan</div>
+              <div class="timeline-description">
+                Joined NextMillan as Senior Software Engineer, quickly rising
+                through the ranks due to exceptional technical and leadership
+                capabilities.
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content animate delay-2">
+              <div class="timeline-year">2022</div>
+              <div class="timeline-title">Head of Product Development</div>
+              <div class="timeline-description">
+                Appointed as Head of Product Development, overseeing the
+                creation of NextMillan's flagship software solutions and AI
+                platforms.
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content animate delay-3">
+              <div class="timeline-year">2023</div>
+              <div class="timeline-title">Chief Technology Officer</div>
+              <div class="timeline-description">
+                Promoted to CTO, responsible for driving NextMillan's technology
+                strategy and innovation roadmap across all business units.
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content animate delay-4">
+              <div class="timeline-year">2024</div>
+              <div class="timeline-title">President & COO</div>
+              <div class="timeline-description">
+                Elevated to President & Chief Operations Officer, overseeing all
+                operational aspects and strategic initiatives for global
+                expansion.
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content animate delay-5">
+              <div class="timeline-year">2025</div>
+              <div class="timeline-title">Industry Recognition</div>
+              <div class="timeline-description">
+                Recognized as "Top 30 Under 30 Technology Leaders" by Global
+                Tech Magazine for outstanding contributions to the industry.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section class="quotes-section">
+      <div class="quotes-container">
+        <p class="quote-text">
+          Excellence is not a skill, it's an attitude. Success comes from
+          combining visionary thinking with relentless execution. Every
+          challenge is an opportunity to innovate and grow.
+        </p>
+        <p class="quote-author">- Utkarsh</p>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+      <div class="achievements-container">
+        <h2 class="section-title">Leadership Achievements</h2>
+        <div class="achievements-grid">
+          <div class="achievement-card animate">
+            <div class="achievement-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="achievement-title">Operational Excellence</h3>
+            <p class="achievement-description">
+              Spearheaded operational improvements that increased efficiency by
+              40% and reduced costs across all departments.
+            </p>
+          </div>
+          <div class="achievement-card animate delay-1">
+            <div class="achievement-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3 class="achievement-title">Global Expansion</h3>
+            <p class="achievement-description">
+              Led successful expansion into 8 new international markets,
+              establishing NextMillan as a truly global technology leader.
+            </p>
+          </div>
+          <div class="achievement-card animate delay-2">
+            <div class="achievement-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3 class="achievement-title">Product Innovation</h3>
+            <p class="achievement-description">
+              Directed development of 15+ innovative products that have
+              generated over $2B in revenue for the company.
+            </p>
+          </div>
+          <div class="achievement-card animate delay-3">
+            <div class="achievement-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="achievement-title">Team Leadership</h3>
+            <p class="achievement-description">
+              Built and leads a high-performance team of 500+ engineers and
+              product specialists across 5 continents.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="president-footer">
+      <div class="footer-content">
+        <div class="footer-logo">NextMillan</div>
+        <p class="footer-text">
+          Pioneering the future through innovative technology solutions. We
+          transform ideas into reality and empower businesses to thrive in the
+          digital age.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="copyright">
+          &copy; 2023 NextMillan. All rights reserved. Crafting the future, one
+          innovation at a time.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      // Observe timeline items and achievement cards
+      document
+        .querySelectorAll(".timeline-content, .achievement-card")
+        .forEach((el) => {
+          observer.observe(el);
+        });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
