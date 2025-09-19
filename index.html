@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NextMillan - Premium Technology Solutions</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --dark-bg: #212121;
+        --dark-card: #2d2d2d;
+        --dark-text: #ffffff;
+        --dark-border: #404040;
+        --gold-primary: #b89b53;
+        --gold-secondary: #d4b977;
+        --gold-accent: #e5d2a9;
+        --gold-dark: #9c8446;
+        --white: #ffffff;
+        --light-gray: #b0b0b0;
+      }
+
+      body {
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        min-height: 100vh;
+        scroll-behavior: smooth;
+      }
+
+      /* Horizontal Navbar */
+      .top-navbar {
+        background-color: rgba(33, 33, 33, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 5%;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid var(--dark-border);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .top-navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--gold-primary);
+        text-decoration: none;
+        letter-spacing: 1px;
+        position: relative;
+      }
+
+      .logo::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--gold-primary);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s ease;
+      }
+
+      .logo:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .top-nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .top-nav-links a {
+        color: var(--dark-text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .top-nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--gold-primary);
+        transition: width 0.3s ease;
+      }
+
+      .top-nav-links a:hover {
+        color: var(--gold-primary);
+      }
+
+      .top-nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .auth-buttons {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .auth-btn {
+        padding: 0.7rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        border: 1px solid;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .auth-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(184, 155, 83, 0.2),
+          transparent
+        );
+        transition: all 0.4s ease;
+        z-index: -1;
+      }
+
+      .auth-btn:hover::before {
+        left: 100%;
+      }
+
+      .login-btn {
+        background: transparent;
+        color: var(--gold-primary);
+        border-color: var(--gold-primary);
+      }
+
+      .login-btn:hover {
+        background: rgba(184, 155, 83, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(184, 155, 83, 0.3);
+      }
+
+      .signup-btn {
+        background-color: var(--gold-primary);
+        color: var(--dark-bg);
+        border: 1px solid var(--gold-primary);
+      }
+
+      .signup-btn:hover {
+        background-color: var(--gold-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(184, 155, 83, 0.3);
+      }
+
+      /* Vertical Sidebar Navbar */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 80px;
+        height: calc(100vh - 80px);
+        width: 80px;
+        background-color: rgba(45, 45, 45, 0.9);
+        border-right: 1px solid var(--dark-border);
+        z-index: 999;
+        padding: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        transition: width 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .sidebar:hover {
+        width: 200px;
+      }
+
+      .sidebar-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        color: var(--dark-text);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sidebar-item i {
+        font-size: 1.5rem;
+        min-width: 30px;
+        margin-right: 1rem;
+        color: var(--gold-primary);
+      }
+
+      .sidebar-item span {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .sidebar:hover .sidebar-item span {
+        opacity: 1;
+      }
+
+      .sidebar-item:hover {
+        color: var(--gold-primary);
+        background: rgba(184, 155, 83, 0.05);
+        transform: translateX(5px);
+      }
+
+      .sidebar-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background-color: var(--gold-primary);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.3s ease;
+      }
+
+      .sidebar-item:hover::before {
+        transform: scaleY(1);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 140px 5% 100px 120px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background-color: var(--dark-bg);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(184, 155, 83, 0.05) 0%,
+            transparent 20%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(212, 185, 119, 0.05) 0%,
+            transparent 20%
+          );
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-text {
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero-text h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+
+      .hero-text p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: var(--light-gray);
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        padding: 1rem 2.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .primary-btn {
+        background-color: var(--gold-primary);
+        color: var(--dark-bg);
+        border: none;
+      }
+
+      .primary-btn::before,
+      .secondary-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        clip-path: polygon(0 0, 100% 0, 100% 20%, 0 50%);
+        transition: all 0.4s ease;
+        z-index: -1;
+      }
+
+      .primary-btn:hover::before,
+      .secondary-btn:hover::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .primary-btn:hover {
+        background-color: var(--gold-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(184, 155, 83, 0.3);
+      }
+
+      .secondary-btn {
+        border: 1px solid var(--gold-primary);
+        background: transparent;
+        color: var(--gold-primary);
+      }
+
+      .secondary-btn:hover {
+        background: rgba(184, 155, 83, 0.1);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(184, 155, 83, 0.2);
+      }
+
+      .hero-image {
+        position: relative;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        background-color: var(--dark-card);
+        border: 1px solid var(--dark-border);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-image-inner {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      /* Facilities Section */
+      .facilities {
+        padding: 100px 5% 100px 120px;
+        position: relative;
+        background-color: var(--dark-card);
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        position: relative;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 3px;
+        background-color: var(--gold-primary);
+        margin: 1rem auto;
+      }
+
+      .facilities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .facility-card {
+        padding: 2.5rem;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        background-color: var(--dark-bg);
+        border-radius: 15px;
+        border: 1px solid var(--dark-border);
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .facility-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .facility-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .facility-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--gold-primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+      }
+
+      .facility-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .facility-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: var(--gold-primary);
+      }
+
+      .facility-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark-text);
+        font-weight: 700;
+      }
+
+      .facility-description {
+        color: var(--light-gray);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .facility-link {
+        color: var(--gold-primary);
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 0.5rem 0;
+      }
+
+      .facility-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--gold-primary);
+        transition: width 0.3s ease;
+      }
+
+      .facility-link:hover::after {
+        width: 100%;
+      }
+
+      .facility-link i {
+        margin-left: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .facility-link:hover {
+        padding-left: 5px;
+      }
+
+      .facility-link:hover i {
+        transform: translateX(5px);
+      }
+
+      /* Startups Section */
+      .startups {
+        padding: 100px 5% 100px 120px;
+        position: relative;
+        background-color: var(--dark-bg);
+      }
+
+      .startups-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .startups-intro {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .startups-intro h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+
+      .startups-intro p {
+        font-size: 1.2rem;
+        color: var(--light-gray);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .perks-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .perk-card {
+        padding: 2rem;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        background-color: var(--dark-card);
+        border-radius: 15px;
+        border: 1px solid var(--dark-border);
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .perk-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .perk-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .perk-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--gold-accent);
+      }
+
+      .perk-title {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        color: var(--dark-text);
+        font-weight: 700;
+      }
+
+      .perk-description {
+        color: var(--light-gray);
+        line-height: 1.7;
+      }
+
+      .cta-section {
+        text-align: center;
+        padding: 3rem;
+        margin-top: 2rem;
+        background-color: var(--dark-card);
+        border-radius: 20px;
+        border: 1px solid var(--dark-border);
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .cta-section.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .cta-section h3 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-text);
+        font-weight: 700;
+      }
+
+      .cta-section p {
+        font-size: 1.1rem;
+        color: var(--light-gray);
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Leadership Buttons Section */
+      .leadership {
+        padding: 100px 5% 100px 120px;
+        position: relative;
+        background-color: #2a2a2a;
+        text-align: center;
+      }
+
+      .leadership-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .leadership-intro {
+        margin-bottom: 4rem;
+      }
+
+      .leadership-intro h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+
+      .leadership-intro p {
+        font-size: 1.2rem;
+        color: var(--light-gray);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .leadership-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .leadership-btn {
+        padding: 1.5rem 3rem;
+        border-radius: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.2rem;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        min-width: 250px;
+        border: 2px solid;
+      }
+
+      .leadership-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        clip-path: polygon(0 0, 100% 0, 100% 20%, 0 50%);
+        transition: all 0.4s ease;
+        z-index: -1;
+      }
+
+      .leadership-btn:hover::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .ceo-btn {
+        background-color: var(--gold-primary);
+        color: var(--dark-bg);
+        border-color: var(--gold-primary);
+      }
+
+      .ceo-btn:hover {
+        background-color: var(--gold-dark);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(184, 155, 83, 0.4);
+      }
+
+      .president-btn {
+        background: transparent;
+        color: var(--gold-primary);
+        border-color: var(--gold-primary);
+      }
+
+      .president-btn:hover {
+        background: rgba(184, 155, 83, 0.1);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(184, 155, 83, 0.3);
+      }
+
+      /* Impact Section */
+      .impact {
+        padding: 100px 5% 100px 120px;
+        position: relative;
+        background-color: #2a2a2a;
+        text-align: center;
+      }
+
+      .impact-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .impact-content.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .impact-intro {
+        margin-bottom: 4rem;
+      }
+
+      .impact-intro h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-text);
+        font-weight: 800;
+      }
+
+      .impact-intro p {
+        font-size: 1.2rem;
+        color: var(--light-gray);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .impact-card {
+        padding: 2rem;
+        background-color: var(--dark-card);
+        border-radius: 15px;
+        border: 1px solid var(--dark-border);
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .impact-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .impact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .impact-number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--gold-primary);
+        margin-bottom: 1rem;
+      }
+
+      .impact-label {
+        font-size: 1.1rem;
+        color: var(--dark-text);
+        font-weight: 600;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1a1a1a;
+        color: var(--dark-text);
+        padding: 60px 5% 40px 120px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-text);
+        position: relative;
+        padding-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--gold-primary);
+      }
+
+      .footer-column p {
+        color: var(--light-gray);
+        margin-bottom: 1rem;
+        line-height: 1.7;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-links a {
+        color: var(--light-gray);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        padding-left: 0;
+      }
+
+      .footer-links a::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: var(--gold-primary);
+        transition: width 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--gold-primary);
+        padding-left: 5px;
+      }
+
+      .footer-links a:hover::before {
+        width: 100%;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-links a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold-primary);
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-links a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(184, 155, 83, 0.2) 0%,
+          rgba(184, 155, 83, 0) 100%
+        );
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        z-index: -1;
+      }
+
+      .social-links a:hover::before {
+        transform: translateY(0);
+      }
+
+      .social-links a:hover {
+        background-color: var(--gold-primary);
+        color: #1a1a1a;
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        text-align: center;
+        color: var(--light-gray);
+        font-size: 0.9rem;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Scroll Progress Bar */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--gold-primary),
+          var(--gold-secondary)
+        );
+        z-index: 1001;
+        transition: width 0.1s ease;
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--gold-primary);
+        color: var(--dark-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+        z-index: 1000;
+        border: none;
+        overflow: hidden;
+      }
+
+      .back-to-top::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: translateY(-100%);
+        transition: transform 0.4s ease;
+        z-index: -1;
+      }
+
+      .back-to-top:hover::before {
+        transform: translateY(0);
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        background-color: var(--gold-dark);
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(184, 155, 83, 0.3);
+      }
+
+      /* Parallax Scrolling Effect */
+      .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        .hero {
+          padding-left: 100px;
+        }
+
+        .facilities,
+        .startups,
+        .leadership,
+        .impact {
+          padding-left: 100px;
+        }
+
+        footer {
+          padding-left: 100px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+
+        .hero-text h1 {
+          font-size: 2.8rem;
+        }
+
+        .leadership-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item:nth-child(even) {
+          left: 0;
+        }
+
+        .timeline-container::before {
+          left: 40px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after,
+        .timeline-item:nth-child(even) .timeline-content::after {
+          left: -32px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 60px;
+        }
+
+        .sidebar:hover {
+          width: 180px;
+        }
+
+        .hero {
+          padding: 120px 5% 60px 80px;
+        }
+
+        .facilities,
+        .startups,
+        .leadership,
+        .impact {
+          padding: 100px 5% 100px 80px;
+        }
+
+        footer {
+          padding: 60px 5% 40px 80px;
+        }
+
+        .top-navbar-container {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .top-nav-links {
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .auth-buttons {
+          gap: 0.5rem;
+        }
+
+        .auth-btn {
+          padding: 0.5rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        .hero-text h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-text p {
+          font-size: 1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero-image {
+          height: 300px;
+        }
+
+        .facilities-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .perks-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-text h1 {
+          font-size: 1.8rem;
+        }
+
+        .top-nav-links {
+          gap: 0.5rem;
+          font-size: 0.9rem;
+        }
+
+        .impact-card {
+          padding: 1.5rem;
+        }
+
+        .impact-number {
+          font-size: 2rem;
+        }
+
+        .back-to-top {
+          bottom: 20px;
+          right: 20px;
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+
+        .timeline-item {
+          padding-left: 55px;
+          padding-right: 15px;
+        }
+
+        .timeline-container::before {
+          left: 30px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after,
+        .timeline-item:nth-child(even) .timeline-content::after {
+          left: -22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Horizontal Navbar -->
+    <header class="top-navbar">
+      <div class="top-navbar-container">
+        <a href="#home" class="logo">NextMillan</a>
+        <nav>
+          <ul class="top-nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#facilities">Services</a></li>
+            <li><a href="#startups">Startups</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="#" class="auth-btn login-btn">Login</a>
+          <a href="#" class="auth-btn signup-btn">Sign Up</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Vertical Sidebar Navbar -->
+    <nav class="sidebar">
+      <a href="#home" class="sidebar-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#facilities" class="sidebar-item">
+        <i class="fas fa-building"></i>
+        <span>Services</span>
+      </a>
+      <a href="#software" class="sidebar-item">
+        <i class="fas fa-laptop-code"></i>
+        <span>Software</span>
+      </a>
+      <a href="#apps" class="sidebar-item">
+        <i class="fas fa-mobile-alt"></i>
+        <span>Apps</span>
+      </a>
+      <a href="#blockchain" class="sidebar-item">
+        <i class="fab fa-bitcoin"></i>
+        <span>Blockchain</span>
+      </a>
+      <a href="#cybersecurity" class="sidebar-item">
+        <i class="fas fa-shield-alt"></i>
+        <span>Cybersecurity</span>
+      </a>
+      <a href="#startups" class="sidebar-item">
+        <i class="fas fa-rocket"></i>
+        <span>Startups</span>
+      </a>
+      <a href="#leadership" class="sidebar-item">
+        <i class="fas fa-user-tie"></i>
+        <span>Leadership</span>
+      </a>
+      <a href="#contact" class="sidebar-item">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Shaping Tomorrow's Technology Today</h1>
+          <p>
+            NextMillan pioneers cutting-edge solutions that transform industries
+            and empower innovation. Our advanced technologies drive
+            unprecedented growth for forward-thinking organizations worldwide.
+          </p>
+          <div class="hero-buttons">
+            <a href="#facilities" class="primary-btn">Explore Services</a>
+            <a href="#startups" class="secondary-btn">For Startups</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div
+            class="hero-image-inner"
+            style="
+              background-color: #2d2d2d;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <i
+              class="fas fa-microchip"
+              style="font-size: 8rem; color: #b89b53"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="facilities" id="facilities">
+      <h2 class="section-title">Our Premium Services</h2>
+      <div class="facilities-grid">
+        <div class="facility-card">
+          <div class="facility-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 class="facility-title">Software Development</h3>
+          <p class="facility-description">
+            Enterprise-grade software solutions with cutting-edge architecture,
+            seamless integration, and unparalleled performance optimization.
+          </p>
+          <a href="#" class="facility-link"
+            >Learn More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="facility-title">App Creation</h3>
+          <p class="facility-description">
+            Native and cross-platform mobile applications with intuitive
+            interfaces and powerful backend systems for maximum engagement.
+          </p>
+          <a href="#" class="facility-link"
+            >Learn More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">
+            <i class="fab fa-bitcoin"></i>
+          </div>
+          <h3 class="facility-title">Blockchain & Crypto</h3>
+          <p class="facility-description">
+            Secure blockchain solutions and cryptocurrency platforms with
+            advanced encryption and decentralized architecture.
+          </p>
+          <a href="#" class="facility-link"
+            >Learn More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="facility-title">Cybersecurity</h3>
+          <p class="facility-description">
+            Comprehensive security solutions to protect your digital assets from
+            evolving threats with proactive monitoring.
+          </p>
+          <a href="#" class="facility-link"
+            >Learn More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <h3 class="facility-title">Cloud Solutions</h3>
+          <p class="facility-description">
+            Scalable cloud infrastructure with optimal performance, reliability,
+            and future-proof flexibility.
+          </p>
+          <a href="#" class="facility-link"
+            >Learn More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="facility-title">AI & Machine Learning</h3>
+          <p class="facility-description">
+            Intelligent systems that learn from data to automate processes and
+            deliver actionable insights.
+          </p>
+          <a href="#" class="facility-link"
+            >Learn More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Startups Section -->
+    <section class="startups" id="startups">
+      <div class="startups-content">
+        <div class="startups-intro">
+          <h2>NextMillan for Startups</h2>
+          <p>
+            We understand the unique challenges startups face. That's why we've
+            created specialized programs to accelerate your growth and maximize
+            your potential.
+          </p>
+        </div>
+
+        <div class="perks-grid">
+          <div class="perk-card">
+            <div class="perk-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="perk-title">Mentorship Program</h3>
+            <p class="perk-description">
+              Access to our network of industry veterans and successful
+              entrepreneurs who provide guidance, strategic advice, and valuable
+              connections to help navigate your startup journey.
+            </p>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3 class="perk-title">Incubation Credits</h3>
+            <p class="perk-description">
+              Generous cloud computing credits, development tools, and
+              infrastructure resources to help you build and scale your product
+              without the burden of upfront technology costs.
+            </p>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="perk-title">Growth Support</h3>
+            <p class="perk-description">
+              Strategic marketing support, PR opportunities, and co-marketing
+              initiatives to increase your visibility in the market and attract
+              your first customers and investors.
+            </p>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="perk-title">Security & Compliance</h3>
+            <p class="perk-description">
+              Comprehensive security solutions and compliance assistance to
+              protect your digital assets and ensure adherence to industry
+              standards from day one.
+            </p>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="perk-title">Hiring Assistance</h3>
+            <p class="perk-description">
+              Exclusive access to our talent network, recruitment assistance,
+              and internship programs to help you build the dream team that will
+              drive your startup's success.
+            </p>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3 class="perk-title">Investor Network</h3>
+            <p class="perk-description">
+              Introduction to our curated network of angel investors, venture
+              capitalists, and strategic partners who are actively seeking the
+              next big innovation to fund.
+            </p>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <h3>Ready to Accelerate Your Startup?</h3>
+          <p>
+            Join hundreds of successful startups that have transformed their
+            ideas into market-leading products with NextMillan's comprehensive
+            support ecosystem.
+          </p>
+          <a href="./startup.html" class="primary-btn"
+            >Apply for Startup Program</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership" id="leadership">
+      <div class="leadership-content">
+        <div class="leadership-intro">
+          <h2>Our Leadership</h2>
+          <p>
+            Meet the visionary leaders who drive NextMillan's success and shape
+            the future of technology.
+          </p>
+        </div>
+
+        <div class="leadership-buttons">
+          <a href="./ceo.html" class="leadership-btn ceo-btn">
+            <i class="fas fa-user-tie"></i> About CEO
+          </a>
+          <a href="./president.html" class="leadership-btn president-btn">
+            <i class="fas fa-user"></i> About President
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact" id="impact">
+      <div class="impact-content">
+        <div class="impact-intro">
+          <h2>Our Global Impact</h2>
+          <p>
+            NextMillan has delivered exceptional results for clients worldwide,
+            driving innovation and growth across industries.
+          </p>
+        </div>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-number" data-target="1243">0</div>
+            <div class="impact-label">Projects Delivered</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number" data-target="857">0</div>
+            <div class="impact-label">Startups Supported</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number" data-target="23">0</div>
+            <div class="impact-label">Countries Served</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number" data-target="98">0</div>
+            <div class="impact-label">Client Satisfaction %</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>NextMillan</h3>
+          <p>
+            Pioneering the future through innovative technology solutions. We
+            transform ideas into reality and empower businesses to thrive in the
+            digital age.
+          </p>
+          <div class="social-links">
+            <a
+              href=" https://twitter.com/godCodingL?t=LAkB7f4sJci5kOYeXgrrRA&s=08"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/godCodingL"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="#">Software Development</a></li>
+            <li><a href="#">App Creation</a></li>
+            <li><a href="#">Blockchain & Crypto</a></li>
+            <li><a href="#">Cybersecurity</a></li>
+            <li><a href="#">Cloud Solutions</a></li>
+            <li><a href="#">AI & Machine Learning</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Motihari, Bihar</p>
+          <p><i class="fas fa-envelope"></i> giriakg1714@gmail.com</p>
+          <p><i class="fas fa-phone"></i> +91 8092313311</p>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2023 NextMillan. All rights reserved. Crafting the future, one
+        innovation at a time.
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector(".top-navbar");
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > 50) {
+          header.style.background = "rgba(33, 33, 33, 0.98)";
+          header.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.2)";
+          header.style.padding = "0.5rem 5%";
+        } else {
+          header.style.background = "rgba(33, 33, 33, 0.95)";
+          header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.2)";
+          header.style.padding = "1rem 5%";
+        }
+      });
+
+      // Scroll progress bar
+      window.addEventListener("scroll", function () {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrolled = (scrollTop / docHeight) * 100;
+        document.querySelector(".progress-bar").style.width = scrolled + "%";
+      });
+
+      // Back to top button
+      const backToTopButton = document.querySelector(".back-to-top");
+      window.addEventListener("scroll", function () {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
+      });
+
+      backToTopButton.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Animated number counters
+      const animateCounter = (element, target) => {
+        let count = 0;
+        const duration = 2000;
+        const increment = target / (duration / 16);
+
+        const updateCounter = () => {
+          count += increment;
+          if (count < target) {
+            element.textContent = Math.ceil(count);
+            requestAnimationFrame(updateCounter);
+          } else {
+            element.textContent = target;
+          }
+        };
+
+        updateCounter();
+      };
+
+      // Enhanced scroll animations
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll(
+          ".facility-card, .perk-card, .cta-section, .impact-card, .impact-content"
+        );
+
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+
+          if (elementPosition < screenPosition) {
+            element.classList.add("animate");
+          }
+        });
+      };
+
+      // Start counter animation when impact section is in view
+      const impactObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              document.querySelectorAll(".impact-number").forEach((element) => {
+                const target = parseInt(element.getAttribute("data-target"));
+                animateCounter(element, target);
+              });
+              impactObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      // Initialize animations
+      window.addEventListener("scroll", animateOnScroll);
+      window.addEventListener("load", animateOnScroll);
+      impactObserver.observe(document.querySelector(".impact"));
+
+      // Parallax effect for hero section
+      window.addEventListener("scroll", function () {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll(".hero::before");
+
+        parallaxElements.forEach((element) => {
+          const speed = 0.5;
+          element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+    </script>
+  </body>
+</html>
